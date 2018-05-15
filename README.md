@@ -22,4 +22,7 @@ This app is not finished at this date - will be developed further in the future.
 Patricia Georgescu
 
 ## License & Copyrights
-Image from Pixabay.
+Images from Pixabay.
+
+## Preview
+![Alt text](src/pics/preview.JPG "Preview")
