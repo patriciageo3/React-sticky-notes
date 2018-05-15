@@ -1,0 +1,288 @@
+/* General styles */
+
+@font-face {
+	font-family: 'windsongregular';
+	src: 	url('fonts/windsong-webfont.woff2') format('woff2'),
+			url('fonts/windsong-webfont.woff') format('woff'),
+			url('fonts/windsong-webfont.ttf') format('truetype');
+	font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+	font-family: Calibri;
+}
+
+h1, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    min-height: 100vh;
+    background-color: rgba(230, 242, 255, .7);
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 5px 0 5px #ccc;
+	position: relative;
+}
+
+.app::before {
+	position: absolute;
+	content: "";
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: url("pics/flowers.jpg") no-repeat center center fixed;
+	background-size: cover;
+	z-index: -3;
+}
+
+.app::after {
+	position: absolute;
+	content: "";
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: url("pics/emb.png") repeat-x bottom fixed;
+	z-index: -2;
+}
+
+/* Header component styles */
+
+header {
+    min-height: 60px;
+    background-color: #001a33;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+	border-bottom: 2px solid  #cc0000;
+}
+
+h1 {
+    padding-left: 20px;
+	font-family: "windsongregular", Calibri, sans-serif;
+	font-size: 40px;
+	padding-top: 20px;
+	letter-spacing: 2px;
+}
+
+.btnAdd {
+    margin-right: 10px;
+    background-color: #b3ccff;
+    color: #ffffff;
+    border: 0;
+    border-bottom: 2px solid #0055ff;
+    height: 40px;
+    border-radius: 5px;
+	font-family: Calibri, sans-serif;
+	font-size: 20px;
+	letter-spacing: 3px;
+	padding: 0 20px;
+	margin-right: 20px;
+}
+
+/* Main content component styles */
+
+.container {
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    font-family: "Raleway", Calibri, sans-serif;
+}
+
+.noteBlock, .noteBlockEdit {
+    background: url("pics/paper.jpg") no-repeat center center fixed;
+	background-size: cover;
+    width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    box-shadow: inset 0px 0px 3px 3px rgba(102, 51, 0, .5),0 7px 20px rgba(0,0,0,0.30), 0 7px 12px rgba(0,0,0,0.22);
+}
+
+.noteBlockBox {
+	max-width: 40%;
+	padding-top: 10px;
+	margin: 0 10px;
+    margin-top: 15px;
+}
+
+/* Buttons styles */
+
+.btnEdit, .btnRemove, .btnSave, .btnDone {
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    color: #ffffff;
+    font-family: Calibri, sans-serif;
+	font-size: 15px;
+}
+
+.btnEdit {
+    background-color: rgba(0, 255, 191, .3);
+    color: #000000;
+    border-bottom: 2px solid #00b386;
+}
+
+.btnRemove {
+    background-color: rgba(255, 26, 102, .5);
+    margin-left: 5px;
+    border-bottom: 2px solid #cc0044;
+}
+
+
+button:hover {
+    font-weight: bold; 
+}
+
+button:active {
+    border: none;
+}
+
+.pin {
+    height: 30px;
+    width: auto;  
+    margin-left: 5px;
+}
+
+.noteTitle {
+    margin: 0;
+}
+
+.noteText {
+    text-align: justify;
+}
+
+textarea {
+    display: block;
+}
+
+/* Add new note component styles */
+
+.form {
+	width: 60%;
+	margin: 0 auto;
+	padding: 20px;
+	background-image: url("pics/pic.jpg");
+	background-size: cover;
+	border-radius: 3px;
+	margin-top: 20px;
+	box-shadow: 7px 5px 3px rgba(0, 0, 0, .2);
+}
+
+.form input, .form textarea {
+	display: block;
+	width: 100%;
+	margin-top: 10px;
+	border-radius: 3px;
+	background-color: rgba(255, 255, 255, .2);
+	border: none;
+	box-shadow: 0 0 3px 3px rgba(0, 0, 0, .2);
+	color: #4d4d4d;
+}
+
+.form input {
+	line-height: 25px;
+}
+
+.form textarea {
+	height: 100px;
+}
+
+.form label {
+	font-family: "Raleway", Calibri, sans-serif;
+	font-size: 17px;
+	color: #4d4d4d;
+}
+
+.btnDone {
+	padding: 10px 20px;
+	background-color: rgba(106, 109, 236, .6);
+	border-bottom: 3px solid #4447b3;
+	display: block;
+	margin: 0 auto;
+	margin-top: 20px;
+	font-size: 17px;
+}
+
+/* Edit note form styles */
+
+.noteBlockEdit input, .noteBlockEdit textarea {
+	display: block;
+	width: 100%;
+	background-color: rgba(255, 255, 255, .2);
+	border: none;
+	box-shadow: 0 0 3px 3px rgba(0, 0, 0, .2);
+	color: #4d4d4d;
+	margin-top: 10px;
+}
+
+.noteBlockEdit input {
+	line-height: 20px;
+}
+
+.noteBlockEdit textarea {
+	height: 40px;
+	margin-bottom: 10px;
+}
+
+.btnSave {
+    margin-top: 10px;
+    background-color: rgba(0, 128, 96, .5);
+    border-bottom: 2px solid #003326;
+	display: block;
+	margin: 0 auto;
+}
+
+/* React animations - NOT FINISHED !!! */
+.animateElem-enter {
+	opacity: .01;
+	-webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -500px, 0);
+}
+
+.animateElem-enter-active {
+	opacity: 1;
+	transition: all .8s ease-in;
+	-webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 0, 0);
+    transform: scale3d(1,1,1) translate3d(0, 0, 0);
+}
+
+.animateElem-exit {
+	opacity: 1;
+}
+
+.animateElem-exit-active {
+	opacity: .01;
+	transition: transform .8s ease-in;
+}
+
+.animateEdit-enter {
+	opacity: .01;
+	-webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -500px, 0);
+}
+
+.animateEdit-enter-active {
+	opacity: 1;
+	transition: all 1s ease-in;
+	-webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+}
+
+.animateEdit-exit {
+	opacity: .01;
+}
+
+.animateEdit-exit-active {
+	opacity: 1;
+	transition: opacity 1s ease-in;
+}
