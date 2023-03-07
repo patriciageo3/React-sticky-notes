@@ -1,13 +1,20 @@
 {
-  "main.css": "static/css/main.8155f0dc.css",
-  "main.css.map": "static/css/main.8155f0dc.css.map",
-  "main.js": "static/js/main.ce2811af.js",
-  "main.js.map": "static/js/main.ce2811af.js.map",
-  "static\\media\\emb.png": "static/media/emb.2cc240a2.png",
-  "static\\media\\flowers.jpg": "static/media/flowers.75d00341.jpg",
-  "static\\media\\paper.jpg": "static/media/paper.90e62309.jpg",
-  "static\\media\\pic.jpg": "static/media/pic.2c5e6e63.jpg",
-  "static\\media\\windsong-webfont.ttf": "static/media/windsong-webfont.b5655f2a.ttf",
-  "static\\media\\windsong-webfont.woff": "static/media/windsong-webfont.cdcfb804.woff",
-  "static\\media\\windsong-webfont.woff2": "static/media/windsong-webfont.e1b468d1.woff2"
+  "files": {
+    "main.css": "/React-sticky-notes/static/css/main.800a128f.css",
+    "main.js": "/React-sticky-notes/static/js/main.324874c1.js",
+    "static/media/flowers.jpg": "/React-sticky-notes/static/media/flowers.9abb4ee5283b29691448.jpg",
+    "static/media/paper.jpg": "/React-sticky-notes/static/media/paper.a784cfd08f8af4418ef8.jpg",
+    "static/media/windsong-webfont.ttf": "/React-sticky-notes/static/media/windsong-webfont.2bb52a9c473672849ade.ttf",
+    "static/media/windsong-webfont.woff": "/React-sticky-notes/static/media/windsong-webfont.21f6c2022ad5f85c1669.woff",
+    "static/media/windsong-webfont.woff2": "/React-sticky-notes/static/media/windsong-webfont.f8e66c542610678c85e0.woff2",
+    "static/media/pic.jpg": "/React-sticky-notes/static/media/pic.d389c5ee64c3e4808d29.jpg",
+    "static/media/emb.png": "/React-sticky-notes/static/media/emb.0f37c572f47ce7bee53f.png",
+    "index.html": "/React-sticky-notes/index.html",
+    "main.800a128f.css.map": "/React-sticky-notes/static/css/main.800a128f.css.map",
+    "main.324874c1.js.map": "/React-sticky-notes/static/js/main.324874c1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.800a128f.css",
+    "static/js/main.324874c1.js"
+  ]
 }
