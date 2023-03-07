@@ -1,19 +1,47 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './App.css';
 import { CSSTransition } from 'react-transition-group';
 
-class Header extends Component {
+
+
+/*
+*** Constants
+*/
+
+const NOTES = 'notes';
+const TITLES = 'titles';
+
+
+
+/*
+*** Utils
+*/
+
+const updateLocalStorage = (itemName, value) => localStorage.setItem(itemName, JSON.stringify(value));
+
+const updateLocalNotesAndTitles = (notes, titles) => {
+    updateLocalStorage(NOTES, notes);
+    updateLocalStorage(TITLES, titles);
+};
+
+
+
+/*
+*** Components
+*/
+
+class Header extends PureComponent {
     render() {
         return (
             <header>
-                <h1> Sticky Notes</h1>
+                <h1> Sticky Notes 2.0</h1>
                 <button className="btnAdd" onClick={this.props.addNew}> Add a Note </button>
             </header>
         );
     }
 }
 
-class Note extends Component {
+class Note extends PureComponent {
     
     constructor(props) {
         super(props);
@@ -97,15 +125,16 @@ class Note extends Component {
     }
 }
 
-class NotesContainer extends Component {
+class NotesContainer extends PureComponent {
     
     constructor(props) {
         super(props);
         
         this.state = {
-            notes: JSON.parse(localStorage.getItem("notes")) || [],
-            titles: JSON.parse(localStorage.getItem("titles")) || []
+            notes: JSON.parse(localStorage.getItem(NOTES)) || [],
+            titles: JSON.parse(localStorage.getItem(TITLES)) || []
         };
+
         this.removeNoteContainer = this.removeNoteContainer.bind(this);
         this.updateNoteContainer = this.updateNoteContainer.bind(this);
         this.addNoteContainer = this.addNoteContainer.bind(this);
@@ -114,13 +143,14 @@ class NotesContainer extends Component {
     
     addNoteContainer(title, txt) {
         if (title && txt) {
-            let noteArr = this.state.notes;
-            noteArr.push(txt);
-            let titleArr = this.state.titles;
-            titleArr.push(title);
-            this.setState({notes: noteArr, titles: titleArr});
-			localStorage.setItem("notes", JSON.stringify(noteArr));
-			localStorage.setItem("titles", JSON.stringify(titleArr));
+            this.setState(prevState => {
+                return ({
+                    notes: [ ...prevState.notes, txt],
+                    titles: [ ...prevState.titles, title]
+                });
+            }, () => {
+                updateLocalNotesAndTitles(this.state.notes, this.state.titles);
+            })		
         } else if (!title) {
             alert("Please fill in a proper title!");
         } else if (!txt) {
@@ -129,23 +159,27 @@ class NotesContainer extends Component {
     }
     
     removeNoteContainer(ind) {
-        let noteArr = this.state.notes;
-        noteArr.splice(ind, 1);
-        let titleArr = this.state.titles;
-        titleArr.splice(ind, 1);
-        this.setState({notes: noteArr, titles: titleArr});
-		localStorage.setItem("notes", JSON.stringify(noteArr));
-		localStorage.setItem("titles", JSON.stringify(titleArr));
+        this.setState(prevState => ({
+            notes: prevState.notes.filter((_note, currentIndex) => currentIndex !== ind ),
+            titles: prevState.titles.filter((_title, currentIndex) => currentIndex !== ind)
+        }), () => {
+            updateLocalNotesAndTitles(this.state.notes, this.state.titles);
+        });
     }
     
     updateNoteContainer(newTextNote, ind, newTitleNote) {
-        let noteArr = this.state.notes;
-        noteArr[ind] = newTextNote;
-        let titleArr = this.state.titles;
-        titleArr[ind] = newTitleNote;
-        this.setState({notes: noteArr, titles: titleArr});
-		localStorage.setItem("notes", JSON.stringify(noteArr));
-		localStorage.setItem("titles", JSON.stringify(titleArr));
+        this.setState(prevState => ({
+            notes: prevState.notes.reduce((acc, elem, index) => {
+                !!(index === ind) ? acc.push(newTextNote) :  acc.push(elem)
+                return acc;
+            }, []),
+            titles: prevState.titles.reduce((acc, elem, index) => {
+                !!(index === ind) ? acc.push(newTitleNote) : acc.push(elem)
+                return acc;
+            }, [])
+        }), () => {
+            updateLocalNotesAndTitles(this.state.notes, this.state.titles);
+        });
     }
 	
     render() {
@@ -156,7 +190,9 @@ class NotesContainer extends Component {
                 {
 					notes.map((elem, i) => {
                         return (
-                            <Note  key={i} index={i} title={this.state.titles[i]} deleteNoteFromContainer={this.removeNoteContainer} saveNoteFromContainer={this.updateNoteContainer}>{elem}</Note>
+                            <Note  key={i} index={i} title={this.state.titles[i]} deleteNoteFromContainer={this.removeNoteContainer} saveNoteFromContainer={this.updateNoteContainer}>
+                                {elem}
+                            </Note>
                         );
                     })
                 } 
@@ -166,7 +202,7 @@ class NotesContainer extends Component {
     }
 }
 
-class AddForm extends Component {
+class AddForm extends PureComponent {
     
     constructor(props) {
         super(props);
@@ -211,7 +247,13 @@ class AddForm extends Component {
     }
 }
 
-class App extends Component {
+
+
+// instead of using the regular normal structure folder (put components separately, etc),
+// I decided to keep everything in this one single file
+// because this is a very simple implementation
+
+class App extends PureComponent {
     
     constructor(props) {
         super(props);
@@ -227,14 +269,14 @@ class App extends Component {
     }
 	
     toggleAddState() {
-        this.setState({activateAdd: !this.state.activateAdd});
+        this.setState(prevState => ({activateAdd: !prevState.activateAdd}));
     }
     
     saveData(arg1, arg2) {
         this.setState({contentTitle: arg1, contentNote: arg2}, function() {
             this.func.addNoteContainer(this.state.contentTitle, this.state.contentNote);
         });
-        this.setState({activateAdd: !this.state.activateAdd});
+        this.setState(prevState => ({activateAdd: !prevState.activateAdd}));
     }
 
     
